@@ -13,15 +13,23 @@ import { ErrorPage } from "./pages/ErrorPage";
 import { ChatsPage } from "./pages/ChatsPage";
 import { UsersPage } from "./pages/UsersPage";
 import { PublicLayout } from "./Layouts/PublicLayout";
+import { setOriginalUsers } from "./redux/slice/filterSlice";
 
 function App() {
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.auth.user);
+  const { user, users } = useAppSelector((state) => state.auth);
+
   useEffect(() => {
     dispatch(checkAuthState());
     dispatch(getUsers());
     dispatch(getUserData());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (users?.length) {
+      dispatch(setOriginalUsers(users));
+    }
+  }, [users, dispatch]);
   return (
     <Router>
       <Toaster position="top-center" />
@@ -31,10 +39,9 @@ function App() {
           <Route path="profile" element={<ProfilePage />} />
           <Route path="/users" element={<UsersPage />} />
         </Route>
-        <Route element={<PublicLayout />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Route>
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );

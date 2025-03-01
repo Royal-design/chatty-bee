@@ -2,7 +2,7 @@ import { Input } from "./ui/input";
 import { CiSearch } from "react-icons/ci";
 import { useState, useEffect } from "react";
 import { useAppDispatch } from "@/redux/store";
-import { filterChats } from "@/redux/slice/filterSlice";
+import { filterData } from "@/redux/slice/filterSlice";
 
 export const Search = () => {
   const dispatch = useAppDispatch();
@@ -10,7 +10,7 @@ export const Search = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      dispatch(filterChats(searchQuery));
+      dispatch(filterData(searchQuery));
     }, 500);
 
     return () => clearTimeout(timeout);

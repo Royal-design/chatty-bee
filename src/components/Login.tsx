@@ -48,7 +48,7 @@ export const Login = () => {
     const response = await dispatch(loginUser(data.email, data.password));
     if (response.success) {
       toast.success("User logged in successfully");
-      navigate("/");
+      navigate("/chats");
       form.reset();
     } else {
       toast.error(response.message || "Login failed");

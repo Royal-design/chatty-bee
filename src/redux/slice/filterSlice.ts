@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserType } from "./authSlice";
-import { Timestamp } from "firebase/firestore";
 
 export interface Chat {
   chatId: string;
@@ -8,18 +7,22 @@ export interface Chat {
   lastMessage: string;
   receiverId: string;
   user: UserType;
-  updatedAt: Timestamp;
+  updatedAt: number;
 }
 
 interface FilterState {
   chats: Chat[];
   originalChats: Chat[];
+  users: UserType[];
+  originalUsers: UserType[];
   loading: boolean;
 }
 
 const initialState: FilterState = {
   chats: [],
   originalChats: [],
+  users: [],
+  originalUsers: [],
   loading: false
 };
 
@@ -31,8 +34,16 @@ export const filterSlice = createSlice({
       state.originalChats = action.payload;
       state.chats = action.payload;
     },
+    setOriginalUsers: (state, action: PayloadAction<UserType[]>) => {
+      state.originalUsers = action.payload;
+      state.users = action.payload;
+    },
     setFilteredChats: (state, action: PayloadAction<Chat[]>) => {
       state.chats = action.payload;
+      state.loading = false;
+    },
+    setFilteredUsers: (state, action: PayloadAction<UserType[]>) => {
+      state.users = action.payload;
       state.loading = false;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
@@ -41,24 +52,37 @@ export const filterSlice = createSlice({
   }
 });
 
-export const { setOriginalChats, setFilteredChats, setLoading } =
-  filterSlice.actions;
+export const {
+  setOriginalChats,
+  setOriginalUsers,
+  setFilteredChats,
+  setFilteredUsers,
+  setLoading
+} = filterSlice.actions;
 
-export const filterChats =
-  (query: string) => (dispatch: any, getState: any) => {
-    const { originalChats } = getState().filter;
+export const filterData = (query: string) => (dispatch: any, getState: any) => {
+  const { originalChats, originalUsers } = getState().filter;
 
-    if (!query.trim()) {
-      dispatch(setFilteredChats(originalChats));
-      return;
-    }
+  if (!query.trim()) {
+    dispatch(setFilteredChats(originalChats));
+    dispatch(setFilteredUsers(originalUsers));
+    return;
+  }
 
-    dispatch(setLoading(true));
+  dispatch(setLoading(true));
 
-    setTimeout(() => {
-      const filtered = originalChats.filter((chat: Chat) =>
-        chat.user?.name?.toLowerCase().includes(query.toLowerCase())
-      );
-      dispatch(setFilteredChats(filtered));
-    }, 500);
-  };
+  setTimeout(() => {
+    const filteredChats = originalChats.filter((chat: Chat) =>
+      chat.user?.name?.toLowerCase().includes(query.toLowerCase())
+    );
+
+    const filteredUsers = originalUsers.filter((user: UserType) =>
+      user.name.toLowerCase().includes(query.toLowerCase())
+    );
+
+    dispatch(setFilteredChats(filteredChats));
+    dispatch(setFilteredUsers(filteredUsers));
+  }, 500);
+};
+
+export default filterSlice.reducer;

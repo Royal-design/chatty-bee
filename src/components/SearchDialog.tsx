@@ -1,17 +1,15 @@
-import { DialogTrigger } from "@radix-ui/react-dialog";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
+  DialogTrigger
 } from "./ui/dialog";
-import { IoIosAddCircleOutline } from "react-icons/io";
 import { Input } from "./ui/input";
 import { IoAddCircleOutline } from "react-icons/io5";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import {
-  arrayUnion,
   collection,
   doc,
   getDocs,
@@ -19,7 +17,8 @@ import {
   serverTimestamp,
   setDoc,
   updateDoc,
-  where
+  where,
+  arrayUnion
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import { Button } from "./ui/button";
@@ -37,6 +36,7 @@ import {
 import avatar from "../assets/user-avatar.jpg";
 import { useAppSelector } from "@/redux/store";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 interface UserType {
   id: string;
@@ -45,12 +45,17 @@ interface UserType {
   bio?: string;
 }
 
-export const SearchDialog = () => {
+interface SearchDialogProps {
+  trigger: ReactElement;
+}
+
+export const SearchDialog = ({ trigger }: SearchDialogProps) => {
   const [user, setUser] = useState<UserType | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [open, setOpen] = useState<boolean>(false);
   const currentUser = useAppSelector((state) => state.auth.user);
+  const navigate = useNavigate();
   const form = useForm<SearchFormData>({
     resolver: zodResolver(searchSchema),
     defaultValues: { name: "" }
@@ -150,6 +155,7 @@ export const SearchDialog = () => {
       });
 
       toast.success("Chat added successfully!");
+      navigate("/chats");
       setOpen(false);
     } catch (error) {
       console.error("Error adding chat:", error);
@@ -159,12 +165,7 @@ export const SearchDialog = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <IoIosAddCircleOutline
-          size={25}
-          className="cursor-pointer duration-200 text-light hover:text-heavy"
-        />
-      </DialogTrigger>
+      <DialogTrigger asChild>{trigger}</DialogTrigger> {/* Dynamic trigger */}
       <DialogContent
         onInteractOutside={(e) => e.preventDefault()}
         className="bg-background text-light border-border-color max-w-sm w-xs p-6 rounded-lg shadow-lg"
@@ -214,20 +215,25 @@ export const SearchDialog = () => {
 
         {user && (
           <div className="flex flex-col gap-2">
-            <div className="mt-4 flex items-center gap-3 p-3 border rounded-md shadow-sm bg-gray-50">
+            <div className="mt-4 flex items-center gap-3 p-3 border rounded-md shadow-sm border-border-color">
               <img
                 src={user.photo || avatar}
                 alt="user"
-                className="size-12 rounded-full bg-gray-200"
+                className="size-12 rounded-full bg-background-heavy border border-border-color"
               />
               <div>
                 <h2 className="font-semibold">{user.name}</h2>
                 <p className="text-sm text-gray-600">
-                  {user.bio || "No bio available"}
+                  {user.bio || "Available"}
                 </p>
               </div>
             </div>
-            <Button onClick={handleAddChat}>Add Chat</Button>
+            <Button
+              onClick={handleAddChat}
+              className="border border-border-color bg-background-heavy duration-200 hover:bg-background-hover"
+            >
+              Add Chat
+            </Button>
           </div>
         )}
       </DialogContent>

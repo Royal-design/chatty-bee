@@ -10,7 +10,15 @@ import {
 } from "firebase/auth";
 import { AppThunk } from "../store";
 
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  setDoc,
+  updateDoc
+} from "firebase/firestore";
 import { Timestamp } from "firebase/firestore";
 import { auth, db } from "@/firebase/firebase";
 
@@ -86,6 +94,7 @@ export const registerUser =
         password
       );
       const user = userCredential.user;
+      const userRef = doc(db, "users", user.uid);
 
       const userData: UserType = {
         id: user.uid,
@@ -99,26 +108,16 @@ export const registerUser =
         blocked: []
       };
 
-      await setDoc(doc(db, "users", user.uid), userData);
-      dispatch(setUser(userData));
+      await setDoc(userRef, userData);
 
-      await setDoc(doc(db, "userChats", user.uid), {
-        chats: []
+      onSnapshot(userRef, (docSnap) => {
+        if (docSnap.exists()) {
+          dispatch(setUser(docSnap.data() as UserType));
+        }
       });
 
       return { success: true };
     } catch (error: any) {
-      // Check if the error is a network issue
-      if (error.code === "auth/network-request-failed") {
-        dispatch(
-          setError("Network error. Please check your internet connection.")
-        );
-        return {
-          success: false,
-          message: "Network error. Please check your internet connection."
-        };
-      }
-      // Handle other errors
       dispatch(setError(error.message));
       return { success: false, message: error.message };
     } finally {
@@ -139,29 +138,18 @@ export const loginUser =
         email,
         password
       );
-      const userDoc = await getDoc(doc(db, "users", userCredential.user.uid));
+      const userRef = doc(db, "users", userCredential.user.uid);
 
-      if (userDoc.exists()) {
-        dispatch(setUser(userDoc.data() as UserType));
-        return { success: true };
-      } else {
-        const errorMessage = "User not found";
-        dispatch(setError(errorMessage));
-        return { success: false, message: errorMessage };
-      }
+      await updateDoc(userRef, { status: "online" });
+
+      onSnapshot(userRef, (docSnap) => {
+        if (docSnap.exists()) {
+          dispatch(setUser(docSnap.data() as UserType));
+        }
+      });
+
+      return { success: true };
     } catch (error: any) {
-      // Check if the error is a network issue
-      if (error.code === "auth/network-request-failed") {
-        dispatch(
-          setError("Network error. Please check your internet connection.")
-        );
-        return {
-          success: false,
-          message: "Network error. Please check your internet connection."
-        };
-      }
-
-      // Handle other errors
       dispatch(setError(error.message));
       return { success: false, message: error.message };
     } finally {
@@ -216,24 +204,22 @@ export const loginWithGoogle =
 
 export const logoutUser =
   (): AppThunk<Promise<{ success: boolean; message?: string }>> =>
-  async (dispatch) => {
+  async (dispatch, getState) => {
     dispatch(setLoading(true));
     try {
+      const state = getState();
+      const currentUser = state.auth.user;
+
+      if (currentUser) {
+        const userRef = doc(db, "users", currentUser.id);
+        await updateDoc(userRef, { status: "offline" });
+      }
+
       await signOut(auth);
       dispatch(clearUser());
 
       return { success: true };
     } catch (error: any) {
-      if (error.code === "auth/network-request-failed") {
-        dispatch(
-          setError("Network error. Please check your internet connection.")
-        );
-        return {
-          success: false,
-          message: "Network error. Please check your internet connection."
-        };
-      }
-
       dispatch(setError(error.message));
       return { success: false, message: error.message };
     } finally {
@@ -243,15 +229,23 @@ export const logoutUser =
 
 export const checkAuthState = (): AppThunk => (dispatch) => {
   dispatch(setLoading(true));
+
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      const userDoc = await getDoc(doc(db, "users", user.uid));
-      if (userDoc.exists()) {
-        dispatch(setUser(userDoc.data() as UserType));
-      }
+      const userRef = doc(db, "users", user.uid);
+
+      // 🔥 Listen for real-time updates
+      const unsubscribe = onSnapshot(userRef, (docSnap) => {
+        if (docSnap.exists()) {
+          dispatch(setUser(docSnap.data() as UserType));
+        }
+      });
+
+      return () => unsubscribe(); // Cleanup when user logs out
     } else {
       dispatch(clearUser());
     }
+
     dispatch(setLoading(false));
   });
 };

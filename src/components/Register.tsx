@@ -40,7 +40,7 @@ export const Register = () => {
 
     if (response.success) {
       form.reset();
-      navigate("/");
+      navigate("/chats");
       toast.success("User registered successfully");
     } else {
       toast.error(response.message || "Registration failed");

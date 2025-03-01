@@ -23,7 +23,7 @@ export const store = configureStore({
         ignoredPaths: [
           "auth.user.updatedAt",
           "auth.users.updatedAt",
-          "filter.chats.0.user.updatedAt",
+          "filter.chats.user.updatedAt",
           "filter.originalChats.0.user.updatedAt",
           "chats.chats.user.updatedAt"
         ]

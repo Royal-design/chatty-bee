@@ -2,21 +2,19 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import avatar from "../assets/user-avatar.jpg";
 import { Separator } from "./ui/separator";
 import { UserSkeleton } from "./UserSkeleton";
-import { changeChats } from "@/redux/slice/chatSlice";
+import { changeChats, setActiveChatId } from "@/redux/slice/chatSlice";
 import { doc, updateDoc } from "firebase/firestore";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { db } from "@/firebase/firebase";
 import { Chat } from "@/redux/slice/filterSlice";
-import { useState } from "react";
-import { formatTime } from "@/features/FormatTime";
+import { formatTime } from "@/features/formatTime";
 
 export const ChatsListContent = () => {
   const filteredChats = useAppSelector((state) => state.filter.chats);
   const loading = useAppSelector((state) => state.filter.loading);
   const currentUser = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
-
-  const [activeChatId, setActiveChatId] = useState<string | null>(null);
+  const activeChatId = useAppSelector((state) => state.chats.activeChatId);
 
   if (loading) {
     return (
@@ -33,23 +31,29 @@ export const ChatsListContent = () => {
   }
 
   const handleSelect = async (chat: Chat) => {
-    if (!currentUser || !chat?.user) return;
+    if (!currentUser?.id || !chat?.chatId || !chat?.user) return;
 
-    setActiveChatId(chat.chatId);
+    dispatch(setActiveChatId(chat.chatId));
 
-    const userChatsRef = doc(db, "userChats", currentUser.id);
     try {
-      await updateDoc(userChatsRef, {
-        chats: filteredChats.map((item) =>
-          item.chatId === chat.chatId ? { ...item, isSeen: true } : item
-        )
-      });
+      localStorage.setItem("activeChat", JSON.stringify(chat));
+
+      const userChatsRef = doc(db, "userChats", currentUser.id);
+      const updatedChats = filteredChats.map((item) =>
+        item.chatId === chat.chatId ? { ...item, isSeen: true } : item
+      );
+
+      await updateDoc(userChatsRef, { chats: updatedChats });
 
       dispatch(
-        changeChats({ currentUser, user: chat.user, chatId: chat.chatId })
+        changeChats({
+          currentUser,
+          user: chat.user,
+          chatId: chat.chatId
+        })
       );
     } catch (error) {
-      console.error(error);
+      console.error("Error updating chat status:", error);
     }
   };
 
@@ -62,7 +66,7 @@ export const ChatsListContent = () => {
           className="w-full"
         >
           <div
-            className={`flex w-full items-center gap-3 p-2 rounded-sm hover:bg-background-hover duration-200 cursor-pointer ${
+            className={`flex w-full items-center gap-3 py-2 rounded-sm hover:bg-background-hover duration-200 cursor-pointer ${
               activeChatId === chat.chatId ? "bg-background" : ""
             }`}
           >
@@ -84,9 +88,8 @@ export const ChatsListContent = () => {
                 <p className="text-xs text-light">
                   {chat.lastMessage || "No message"}
                 </p>
-                <p className="text-[10px] justify-end">
-                  {" "}
-                  {formatTime(chat.updatedAt)}
+                <p className="text-[10px] text-light justify-end">
+                  {chat.lastMessage && formatTime(chat.updatedAt)}
                 </p>
               </div>
             </div>

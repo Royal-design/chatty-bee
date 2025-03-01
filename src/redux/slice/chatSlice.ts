@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserType } from "./authSlice";
-import { Timestamp } from "firebase/firestore";
 
 interface Chat {
   chatId: string;
@@ -8,12 +7,13 @@ interface Chat {
   isCurrentUserBlocked: boolean;
   isReceiverBlocked: boolean;
   shouldFocus: boolean;
-  updatedAt?: Timestamp;
+  updatedAt?: number;
 }
 
 interface ChatState {
   chats: Chat;
   loading: boolean;
+  activeChatId: string;
 }
 
 const initialState: ChatState = {
@@ -24,7 +24,8 @@ const initialState: ChatState = {
     isReceiverBlocked: false,
     shouldFocus: false
   },
-  loading: false
+  loading: false,
+  activeChatId: localStorage.getItem("activeChatId") || ""
 };
 
 export const chatSlice = createSlice({
@@ -66,6 +67,9 @@ export const chatSlice = createSlice({
           shouldFocus: true
         };
       }
+
+      state.activeChatId = chatId;
+      localStorage.setItem("activeChatId", chatId);
     },
 
     changeBlock: (state) => {
@@ -74,11 +78,17 @@ export const chatSlice = createSlice({
       }
     },
 
+    setActiveChatId: (state, action) => {
+      state.activeChatId = action.payload;
+      localStorage.setItem("activeChatId", action.payload);
+    },
+
     resetFocus: (state) => {
       state.chats.shouldFocus = false;
     }
   }
 });
 
-export const { changeChats, changeBlock, resetFocus } = chatSlice.actions;
+export const { changeChats, changeBlock, resetFocus, setActiveChatId } =
+  chatSlice.actions;
 export default chatSlice.reducer;

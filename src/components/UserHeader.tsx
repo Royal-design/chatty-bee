@@ -4,9 +4,13 @@ import { Search } from "./Search";
 import { ProfileMenu } from "./ProfileMenu";
 import { SearchDialog } from "./SearchDialog";
 import { UserSkeleton } from "./UserSkeleton";
-export const ChatsListHeader = () => {
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { useLocation } from "react-router-dom";
+export const UserHeader = () => {
   const user = useAppSelector((state) => state.auth.user);
   const loading = useAppSelector((state) => state.auth.loading);
+  const location = useLocation();
+  const userPage = location.pathname === "/users";
   return (
     <div className="flex flex-col">
       <div className="justify-between mb-4 items-center flex gap-4">
@@ -34,7 +38,16 @@ export const ChatsListHeader = () => {
       </div>
       <div className="flex items-center gap-2">
         <Search />
-        <SearchDialog />
+        {!userPage && (
+          <SearchDialog
+            trigger={
+              <IoIosAddCircleOutline
+                size={25}
+                className="cursor-pointer duration-200 text-light hover:text-heavy"
+              />
+            }
+          />
+        )}
       </div>
     </div>
   );

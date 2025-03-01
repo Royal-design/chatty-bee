@@ -92,7 +92,7 @@ export const EditProfilePage = ({
       await setDoc(userRef, updatedData, { merge: true });
 
       toast.success("Profile updated successfully!");
-      navigate("/");
+      navigate("/chats");
       setIsEditDialogOpen(false);
       dispatch(getUserData());
     } catch (error) {

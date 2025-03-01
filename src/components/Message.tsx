@@ -2,7 +2,7 @@ import { useAppSelector } from "@/redux/store";
 import { Card, CardContent } from "./ui/card";
 import { Timestamp } from "firebase/firestore";
 import avatar from "../assets/user-avatar.jpg";
-import { formatTime } from "@/features/FormatTime";
+import { formatTime } from "@/features/formatTime";
 
 interface MessageProps {
   text: string;
