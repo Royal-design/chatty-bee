@@ -49,7 +49,7 @@ export const ChatsMessages = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chat]);
   return (
-    <div className="h-full flex flex-col  ">
+    <div className="h-full flex flex-col ">
       <div className="">
         <Navbar />
       </div>

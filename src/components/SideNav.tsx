@@ -5,8 +5,8 @@ import { BsInfoCircleFill } from "react-icons/bs";
 
 export const SideNav = () => {
   return (
-    <div className="h-full w-[45px] relative p-[4px] bg-gradient-to-r from-[#533303] to-[#6d460c] rounded-full shadow-md">
-      <div className=" bg-[#120902] border-[#fff] border flex flex-col justify-between items-center w-full py-[4rem] h-full rounded-full">
+    <div className="h-[40px] md:h-full md:w-[45px] w-full relative p-[4px] bg-gradient-to-r from-[#533303] to-[#6d460c] rounded-2xl md:rounded-full shadow-md">
+      <div className=" bg-[#120902] border-[#fff] border flex md:flex-col justify-between items-center w-full md:py-[4rem] py-4 px-2 md:px-0 h-full rounded-2xl md:rounded-full">
         <NavLink to="/chats">
           <IoChatbubbleEllipsesOutline size={25} className="text-[#a2a0a0]" />
         </NavLink>

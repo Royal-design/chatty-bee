@@ -1,28 +1,21 @@
 import { ChatsBox } from "@/components/ChatsBox";
 import { ChatsList } from "@/components/ChatsList";
-import { MobileChatsPage } from "@/components/MobileChatsPage";
+import { ChatsMessages } from "@/components/ChatsMessages";
 import { WelcomeMessage } from "@/components/WelcomeMessage";
 import { db } from "@/firebase/firebase";
-import { setActiveChatId } from "@/redux/slice/chatSlice";
 import { setOriginalChats } from "@/redux/slice/filterSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-export const ChatsPage = () => {
+export const ChatMessage = () => {
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector((state) => state.auth.user);
 
-  const chatId = useAppSelector((state) => state.chats.chats.chatId);
-  // const activeChatId = useAppSelector((state) => state.chats.activeChatId);
   const chats = useAppSelector((state) => state.filter.chats);
-  useEffect(() => {
-    const savedChatId = localStorage.getItem("activeChatId");
 
-    if (savedChatId) {
-      dispatch(setActiveChatId(savedChatId));
-    }
-  }, [dispatch]);
+  const { chatId } = useParams();
 
   useEffect(() => {
     if (currentUser?.id) {
@@ -60,20 +53,26 @@ export const ChatsPage = () => {
       return () => unSub();
     }
   }, [currentUser?.id, dispatch]);
-
   return (
-    <>
-      <section className=" hidden md:flex h-full">
-        <div className="w-[250px]">
-          <ChatsList />
+    <div className="h-full flex flex-col">
+      {chatId && chats.length > 0 ? (
+        <div className="h-full ">
+          <div className=" md:flex hidden h-full">
+            <div className="h-full">
+              <ChatsList />
+            </div>
+            <div className="h-full flex-1">
+              <ChatsBox />
+            </div>
+          </div>
+
+          <div className=" md:hidden h-full">
+            <ChatsMessages />
+          </div>
         </div>
-        <div className="flex-1 h-full">
-          {chatId && chats.length > 0 ? <ChatsBox /> : <WelcomeMessage />}
-        </div>
-      </section>
-      <div className="md:hidden h-full overflow-auto scrollbar-hidden">
-        <MobileChatsPage />
-      </div>
-    </>
+      ) : (
+        <WelcomeMessage />
+      )}
+    </div>
   );
 };

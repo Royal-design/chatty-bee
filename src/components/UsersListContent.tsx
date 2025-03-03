@@ -119,7 +119,7 @@ export const UsersListContent = () => {
   }
 
   return (
-    <div>
+    <div className="w-full h-full">
       {filteredUsers.map((user, index) => (
         <div
           className="w-full cursor-pointer"

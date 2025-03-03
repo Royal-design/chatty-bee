@@ -15,13 +15,23 @@ export const RootLayout = () => {
   //   );
 
   return (
-    <div className="h-screen flex w-full bg-[#120902]  text-white ">
-      <div className="py-3 pl-4">
-        <SideNav />
+    <>
+      <div className="h-screen hidden   md:flex w-full bg-[#120902]  text-white ">
+        <div className="py-3 pl-4">
+          <SideNav />
+        </div>
+        <main className="w-full py-2">
+          <Outlet />
+        </main>
       </div>
-      <main className="w-full py-2">
-        <Outlet />
-      </main>
-    </div>
+      <div className="h-screen flex flex-col md:hidden w-full bg-[#120902]  text-white ">
+        <main className="w-full h-full py-2">
+          <Outlet />
+        </main>
+        <div className="py-3 pl-4 ">
+          <SideNav />
+        </div>
+      </div>
+    </>
   );
 };

@@ -8,6 +8,7 @@ import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { db } from "@/firebase/firebase";
 import { Chat } from "@/redux/slice/filterSlice";
 import { formatTime } from "@/features/formatTime";
+import { useNavigate } from "react-router-dom";
 
 export const ChatsListContent = () => {
   const filteredChats = useAppSelector((state) => state.filter.chats);
@@ -15,7 +16,7 @@ export const ChatsListContent = () => {
   const currentUser = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
   const activeChatId = useAppSelector((state) => state.chats.activeChatId);
-
+  const navigate = useNavigate();
   if (loading) {
     return (
       <div className="w-full flex flex-col gap-4">
@@ -52,13 +53,14 @@ export const ChatsListContent = () => {
           chatId: chat.chatId
         })
       );
+      navigate(`/chats/${chat.chatId}`);
     } catch (error) {
       console.error("Error updating chat status:", error);
     }
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full h-full">
       {filteredChats.map((chat, index, array) => (
         <div
           key={chat.chatId}

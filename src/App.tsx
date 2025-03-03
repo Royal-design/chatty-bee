@@ -14,6 +14,7 @@ import { ChatsPage } from "./pages/ChatsPage";
 import { UsersPage } from "./pages/UsersPage";
 import { PublicLayout } from "./Layouts/PublicLayout";
 import { setOriginalUsers } from "./redux/slice/filterSlice";
+import { ChatMessage } from "./pages/ChatMessage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -36,6 +37,8 @@ function App() {
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route path="/chats" element={<ChatsPage />} />
+          <Route path="/chats/:chatId" element={<ChatMessage />} />
+
           <Route path="profile" element={<ProfilePage />} />
           <Route path="/users" element={<UsersPage />} />
         </Route>
