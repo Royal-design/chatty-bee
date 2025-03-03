@@ -40,18 +40,22 @@ export const ChatsProfile = () => {
       toast.error(response.message || "Logout failed");
     }
   };
+
+  const isBlocked = chatUser?.id && currentUser?.blocked.includes(chatUser.id);
   return (
     <div className="flex pb-5 items-center flex-col bg-gradient-to-r from-[#0c0900] to-[#141001] border-l border-[#533303]  h-full flex-wrap gap-4">
       <div className="flex flex-1 flex-col mt-8 items-center w-full">
         <img
-          src={chatUser?.photo || avatar}
+          src={isBlocked ? avatar : chatUser?.photo || avatar}
           alt="avatar"
           className="size-15 bg-background-heavy border border-border-color rounded-full"
         />
         <h2 className="font-semibold  text-heavy text-lg text-center">
-          {chatUser?.name || "user"}
+          {isBlocked ? "User" : chatUser?.name || "user"}
         </h2>
-        <p className="text-xs text-center">{chatUser?.bio || "No bio"}</p>
+        <p className="text-xs text-center">
+          {isBlocked ? "User bio" : chatUser?.bio || "No bio"}
+        </p>
       </div>
       <div className="flex text-light  justify-end flex-col space-y-2">
         <Button

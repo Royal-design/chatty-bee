@@ -13,7 +13,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { RegisterFormData, registerSchema } from "@/schema/registerSchema";
-import { Card, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle
+} from "./ui/card";
 import { useAppDispatch } from "@/redux/store";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "@/redux/slice/authSlice";
@@ -62,59 +68,62 @@ export const Register = () => {
               Sign Up & Start Connecting with Chatty Bee
             </p>
           </CardHeader>
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Enter your name"
-                    {...field}
-                    className="text-light border border-border-color"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Enter your email"
-                    {...field}
-                    className="text-light border border-border-color"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="Enter your password"
-                    className="text-light border border-border-color"
-                    {...field}
-                  />
-                </FormControl>
+          <CardContent className="p-0 flex flex-col gap-1">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter your name"
+                      {...field}
+                      className="text-light border border-border-color"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter your email"
+                      {...field}
+                      className="text-light border border-border-color"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="Enter your password"
+                      className="text-light border border-border-color"
+                      {...field}
+                    />
+                  </FormControl>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </CardContent>
+
           <CardFooter className="p-0 flex flex-col gap-1">
             <Button
               disabled={form.formState.isSubmitting}

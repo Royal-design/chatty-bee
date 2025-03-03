@@ -7,15 +7,13 @@ import { setOriginalChats } from "@/redux/slice/filterSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 
 export const ChatMessage = () => {
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector((state) => state.auth.user);
+  const chatId = useAppSelector((state) => state.chats.activeChatId);
 
   const chats = useAppSelector((state) => state.filter.chats);
-
-  const { chatId } = useParams();
 
   useEffect(() => {
     if (currentUser?.id) {

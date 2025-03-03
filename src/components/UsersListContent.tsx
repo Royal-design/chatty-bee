@@ -55,7 +55,7 @@ export const UsersListContent = () => {
 
       // If chat exists, navigate to it
       if (existingChatId) {
-        navigate(`/chats`);
+        navigate(`/chats/${existingChatId}`);
         dispatch(setActiveChatId(existingChatId));
         dispatch(
           changeChats({ currentUser, user: user, chatId: existingChatId || "" })

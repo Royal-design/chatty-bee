@@ -79,7 +79,7 @@ export const Login = () => {
         onSubmit={form.handleSubmit(handleSubmit)}
         className="space-y-4 h-screen flex flex-col p-8 justify-center items-center w-full"
       >
-        <Card className="max-w-sm flex flex-col w-full bg-background mx-auto  md:p-4 md:border md:border-border-color rounded-md">
+        <Card className="max-w-sm flex flex-col w-full bg-background mx-auto px-2 border-border-color  md:p-4 md:border md:border-border-color rounded-md">
           <CardHeader className="text-center flex mb-0 flex-col items-center w-full text-xl md:text-2xl my-4 font-bold">
             <img src={chattLogo} alt="chatty-bee" className="size-12" />
             <CardTitle className="text-heavy">Log In to Your Account</CardTitle>

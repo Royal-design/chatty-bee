@@ -1,50 +1,52 @@
-# React + TypeScript + Vite
+# ChattyBee App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ChattyBee is a real-time chat application built with React and Firebase. It features user authentication, real-time messaging.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User authentication with email/password and Google login.
+- Real-time chat functionality using Firebase.
+- Responsive and user-friendly interface.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React
+- Redux Toolkit
+- Firebase
+- TypeScript
+- Tailwind CSS
+- React Hook Form
+- Zod for form validation
+- ShadCN UI Components
 
-- Configure the top-level `parserOptions` property like this:
+## State Management
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+The application uses Redux Toolkit to manage chat state. Chats are stored in local storage for persistence.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Authentication
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Users can log in using:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Email and password authentication.
+- Google authentication.
+
+## Chat Functionality
+
+- Messages are stored in Firebase.
+- Users can block/unblock other users.
+- Messages are auto-detected for language and can be translated.
+
+## UI Components
+
+- **ShadCN UI** for styling.
+- **React Hook Form & Zod** for form validation.
+- **Tailwind CSS** for responsive design.
+
+## Local Storage Usage
+
+- Active chat ID is stored in local storage for persistence.
+- Chats are saved and retrieved from local storage.
+
+## Contribution
+
+If you’d like to contribute, feel free to fork the repository and submit a pull request.

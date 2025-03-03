@@ -1,4 +1,3 @@
-import { ChatsBox } from "@/components/ChatsBox";
 import { ChatsList } from "@/components/ChatsList";
 import { MobileChatsPage } from "@/components/MobileChatsPage";
 import { WelcomeMessage } from "@/components/WelcomeMessage";
@@ -68,7 +67,7 @@ export const ChatsPage = () => {
           <ChatsList />
         </div>
         <div className="flex-1 h-full">
-          {chatId && chats.length > 0 ? <ChatsBox /> : <WelcomeMessage />}
+          {chatId && chats.length > 0 && <WelcomeMessage />}
         </div>
       </section>
       <div className="md:hidden h-full overflow-auto scrollbar-hidden">

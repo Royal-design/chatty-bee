@@ -26,7 +26,7 @@ export const WelcomeMessage = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.4 }}
-        className="text-2xl font-semibold text-heavy"
+        className="text-xl md:text-2xl font-semibold text-heavy"
       >
         <p> Welcome to ChattyBee!</p>
       </motion.h2>
@@ -34,7 +34,7 @@ export const WelcomeMessage = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.4 }}
-        className="text-xl font-semibold text-light"
+        className="text-sm md:text-xl font-semibold text-light"
       >
         No Chats Yet? Let’s Get the Buzz Going! 🐝
       </motion.h2>
@@ -43,7 +43,7 @@ export const WelcomeMessage = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.5 }}
-        className="text-sm text-gray-500 mt-2"
+        className="text-sm text-gray-500 mt-4"
       >
         "Looks like it’s a little too quiet in here... but don’t worry, the hive
         is waiting for you to start buzzing!"
@@ -67,7 +67,7 @@ export const WelcomeMessage = () => {
         >
           <SearchDialog
             trigger={
-              <Button className="bg-background-heavy border border-border-color hover:bg-background-hover duration-200 text-heavy">
+              <Button className="bg-background-heavy h-8 text-sm px-1 border border-border-color hover:bg-background-hover duration-200 text-heavy">
                 Start a New Chat
               </Button>
             }
@@ -75,7 +75,7 @@ export const WelcomeMessage = () => {
           <NavLink to="/users">
             <Button
               variant="outline"
-              className="border-yellow-500 text-yellow-500 hover:bg-background-heavy hover:text-heavy"
+              className="border-yellow-500 h-8 text-sm px-1  text-yellow-500 hover:bg-background-heavy hover:text-heavy"
             >
               Discover People
             </Button>

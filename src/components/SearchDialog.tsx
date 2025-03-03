@@ -18,7 +18,8 @@ import {
   setDoc,
   updateDoc,
   where,
-  arrayUnion
+  arrayUnion,
+  getDoc
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import { Button } from "./ui/button";
@@ -108,26 +109,26 @@ export const SearchDialog = ({ trigger }: SearchDialogProps) => {
 
     try {
       const userChatsRef = doc(db, "userChats", currentUser.id);
-      const userChatsSnap = await getDocs(collection(db, "userChats"));
+      const userChatsSnap = await getDoc(userChatsRef);
 
-      let chatExists = false;
+      if (userChatsSnap.exists()) {
+        const userChats = userChatsSnap.data().chats || [];
 
-      userChatsSnap.forEach((doc) => {
-        const data = doc.data();
-        const existingChat = data.chats?.find(
+        // Check if chat already exists
+        const chatExists = userChats.some(
           (chat: any) => chat.receiverId === user.id
         );
-        if (existingChat) chatExists = true;
-      });
 
-      if (chatExists) {
-        toast.error("Chat already exists with this user.");
-        setTimeout(() => {
-          setUser(null);
-        }, 300);
-        return;
+        if (chatExists) {
+          toast.error("Chat already exists with this user.");
+          setTimeout(() => {
+            setUser(null);
+          }, 300);
+          return;
+        }
       }
 
+      // Create a new chat document
       const chatRef = collection(db, "chats");
       const newChatRef = doc(chatRef);
 
@@ -136,13 +137,16 @@ export const SearchDialog = ({ trigger }: SearchDialogProps) => {
         messages: []
       });
 
+      // Update both users' chat lists
+      const newChatData = {
+        chatId: newChatRef.id,
+        lastMessage: "",
+        receiverId: user.id,
+        updatedAt: Date.now()
+      };
+
       await updateDoc(userChatsRef, {
-        chats: arrayUnion({
-          chatId: newChatRef.id,
-          lastMessage: "",
-          receiverId: user.id,
-          updatedAt: Date.now()
-        })
+        chats: arrayUnion(newChatData)
       });
 
       await updateDoc(doc(db, "userChats", user.id), {

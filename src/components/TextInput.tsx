@@ -3,7 +3,6 @@ import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "./ui/textarea";
-import { IoIosSend } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
@@ -156,13 +155,13 @@ export const TextInput = ({ focusRef }: InputProps) => {
                       field.ref(e);
                       if (e) focusRef.current = e;
                     }}
-                    className="w-full border-border-color text-light max-h-[80px] pl-[3rem] overflow-auto scrollbar-hidden pt-5 rounded-4xl resize-none"
+                    className="w-full border-border-color text-light pl-[3rem] h-[3rem] min-h-[3rem] max-h-[40px]  overflow-auto scrollbar-hidden rounded-4xl resize-none"
                   />
                 </FormControl>
               </FormItem>
             )}
           />
-          <div className="absolute top-[40%] left-4">
+          <div className="absolute top-[30%] left-4">
             <div
               className={
                 isCurrentUserBlocked || isReceiverBlocked
@@ -193,7 +192,7 @@ export const TextInput = ({ focusRef }: InputProps) => {
             control={form.control}
             name="photo"
             render={() => (
-              <FormItem className="absolute right-4 top-[40%]">
+              <FormItem className="absolute right-4 top-[30%]">
                 <FormLabel htmlFor="image">
                   <FaImage
                     size={24}

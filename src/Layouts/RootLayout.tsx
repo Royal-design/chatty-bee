@@ -1,19 +1,9 @@
 import { SideNav } from "@/components/SideNav";
-import { useState } from "react";
-import { Outlet } from "react-router-dom";
-import messageBox from "../assets/whatsappbox.svg";
+import { Outlet, useLocation } from "react-router-dom";
 
 export const RootLayout = () => {
-  const [loading] = useState(true);
-  // if (loading)
-  //   return (
-  //     <div className="w-[200px] h-[20rem] bg-[url('@/assets/whatsappbox.svg')]  bg-cover bg-center ">
-  //       <p className="text-white text-lg font-bold px-4">
-  //         This is a long text that should fit inside the SVG.
-  //       </p>
-  //     </div>
-  //   );
-
+  const location = useLocation();
+  const isChatsChild = location.pathname.startsWith("/chats/");
   return (
     <>
       <div className="h-screen hidden   md:flex w-full bg-[#120902]  text-white ">
@@ -28,9 +18,7 @@ export const RootLayout = () => {
         <main className="w-full h-full py-2">
           <Outlet />
         </main>
-        <div className="py-3 pl-4 ">
-          <SideNav />
-        </div>
+        <div className="py-3 pl-4 ">{!isChatsChild && <SideNav />}</div>
       </div>
     </>
   );
