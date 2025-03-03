@@ -6,6 +6,7 @@ import { useAppSelector } from "@/redux/store";
 
 export const Navbar = () => {
   const chatUser = useAppSelector((state) => state.chats.chats.user);
+
   return (
     <div className="flex border-b border-border-color pb-2 px-2 justify-between items-center">
       <div className="flex items-center gap-4 ">

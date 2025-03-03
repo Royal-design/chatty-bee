@@ -82,7 +82,7 @@ export const filterData = (query: string) => (dispatch: any, getState: any) => {
 
     dispatch(setFilteredChats(filteredChats));
     dispatch(setFilteredUsers(filteredUsers));
-  }, 500);
+  }, 200);
 };
 
 export default filterSlice.reducer;

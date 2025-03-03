@@ -16,14 +16,19 @@ interface ChatState {
   activeChatId: string;
 }
 
+const storedChats = localStorage.getItem("chats");
+const initialChats: Chat = storedChats
+  ? JSON.parse(storedChats)
+  : {
+      chatId: "",
+      user: null,
+      isCurrentUserBlocked: false,
+      isReceiverBlocked: false,
+      shouldFocus: false
+    };
+
 const initialState: ChatState = {
-  chats: {
-    chatId: "",
-    user: null,
-    isCurrentUserBlocked: false,
-    isReceiverBlocked: false,
-    shouldFocus: false
-  },
+  chats: initialChats,
   loading: false,
   activeChatId: localStorage.getItem("activeChatId") || ""
 };
@@ -69,12 +74,15 @@ export const chatSlice = createSlice({
       }
 
       state.activeChatId = chatId;
+
+      localStorage.setItem("chats", JSON.stringify(state.chats));
       localStorage.setItem("activeChatId", chatId);
     },
 
     changeBlock: (state) => {
       if (state.chats) {
         state.chats.isReceiverBlocked = !state.chats.isReceiverBlocked;
+        localStorage.setItem("chats", JSON.stringify(state.chats));
       }
     },
 
@@ -85,6 +93,7 @@ export const chatSlice = createSlice({
 
     resetFocus: (state) => {
       state.chats.shouldFocus = false;
+      localStorage.setItem("chats", JSON.stringify(state.chats));
     }
   }
 });

@@ -1,7 +1,4 @@
-import { useAppSelector } from "@/redux/store";
-
 export const ProfilePage = () => {
-  const user = useAppSelector((state) => state.auth.user);
   return (
     <section className="max-w-2xl mx-auto h-full overflow-auto scrollbar-hidden p-6 rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold text-center text-heavy">

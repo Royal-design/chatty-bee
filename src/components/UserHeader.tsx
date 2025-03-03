@@ -29,7 +29,7 @@ export const UserHeader = () => {
               <h2 className="font-semibold text-lg text-heavy ">
                 {user?.name}
               </h2>
-              <p className="text-xs text-light">{user?.bio}</p>
+              <p className="text-xs text-light">{user?.bio || "Available"}</p>
             </div>
           </figure>
         )}

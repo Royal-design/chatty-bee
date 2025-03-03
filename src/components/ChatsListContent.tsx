@@ -67,7 +67,7 @@ export const ChatsListContent = () => {
         >
           <div
             className={`flex w-full items-center gap-3 py-2 rounded-sm hover:bg-background-hover duration-200 cursor-pointer ${
-              activeChatId === chat.chatId ? "bg-background" : ""
+              activeChatId === chat.chatId ? "bg-button-active px-1" : ""
             }`}
           >
             <img

@@ -20,6 +20,7 @@ import { registerUser } from "@/redux/slice/authSlice";
 import chattLogo from "../assets/chatty.png";
 
 import { toast } from "sonner";
+import { UserLoadingSpinner } from "./UserLoadingSpinner";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -120,7 +121,11 @@ export const Register = () => {
               type="submit"
               className="w-full bg-background-heavy border-border-color border hover:bg-background-hover"
             >
-              Register
+              {form.formState.isSubmitting ? (
+                <UserLoadingSpinner />
+              ) : (
+                "Register"
+              )}
             </Button>
             <p className="text-light text-sm mt-2">
               {" "}

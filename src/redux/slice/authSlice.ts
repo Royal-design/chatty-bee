@@ -109,7 +109,9 @@ export const registerUser =
       };
 
       await setDoc(userRef, userData);
-
+      await setDoc(doc(db, "userChats", user.uid), {
+        chats: []
+      });
       onSnapshot(userRef, (docSnap) => {
         if (docSnap.exists()) {
           dispatch(setUser(docSnap.data() as UserType));
@@ -180,6 +182,9 @@ export const loginWithGoogle =
 
       await setDoc(doc(db, "users", user.uid), userData, { merge: true });
       dispatch(setUser(userData));
+      await setDoc(doc(db, "userChats", user.uid), {
+        chats: []
+      });
 
       return { success: true };
     } catch (error: any) {
