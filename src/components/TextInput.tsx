@@ -241,9 +241,9 @@ export const TextInput = ({ focusRef }: InputProps) => {
           aria-label="Send Message"
         >
           {loading ? (
-            <span className=" border-2 border-primary border-t-transparent rounded-full animate-spin"></span>
+            <span className=" border-2 text-white border-white border-t-transparent rounded-full animate-spin"></span>
           ) : (
-            <BiSolidSend size={20} className="text-light" />
+            <BiSolidSend size={20} className="text-light " />
           )}
         </Button>
       </form>
