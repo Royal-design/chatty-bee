@@ -60,7 +60,7 @@ export const Register = () => {
         onSubmit={form.handleSubmit(handleSubmit)}
         className="space-y-8 h-screen flex flex-col p-8  justify-center  items-center w-full"
       >
-        <Card className="max-w-sm w-full mx-auto p-2 md:p-4 md:border border-border-color bg-background rounded-md ">
+        <Card className="max-w-sm text-light w-full mx-auto p-2 md:p-4 md:border md:border-border-color border-0 bg-background rounded-md ">
           <CardHeader className="text-center flex flex-col items-center text-xl md:text2xl mb-4 fontbold">
             <img src={chattLogo} alt="chatty-bee" className="size-12" />
             <CardTitle className="text-light"> Create an Account</CardTitle>
@@ -68,7 +68,7 @@ export const Register = () => {
               Sign Up & Start Connecting with Chatty Bee
             </p>
           </CardHeader>
-          <CardContent className="p-0 flex flex-col gap-1">
+          <CardContent className="p-0 flex flex-col gap-4">
             <FormField
               control={form.control}
               name="name"
@@ -128,7 +128,7 @@ export const Register = () => {
             <Button
               disabled={form.formState.isSubmitting}
               type="submit"
-              className="w-full bg-background-heavy border-border-color border hover:bg-background-hover"
+              className="w-full text-light bg-background-heavy border-border-color border hover:bg-background-hover"
             >
               {form.formState.isSubmitting ? (
                 <UserLoadingSpinner />

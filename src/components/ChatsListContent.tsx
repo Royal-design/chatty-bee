@@ -97,7 +97,7 @@ export const ChatsListContent = () => {
             </div>
           </div>
           {index < array.length - 1 && (
-            <Separator className="border-border-color border " />
+            <Separator className="border-border-color-light border-b" />
           )}
         </div>
       ))}

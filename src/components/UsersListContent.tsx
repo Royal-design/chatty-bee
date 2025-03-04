@@ -138,7 +138,7 @@ export const UsersListContent = () => {
             </div>
           </figure>
           {index < filteredUsers.length - 1 && (
-            <Separator className="border-border-color border" />
+            <Separator className="border-border-color-light border-b" />
           )}
         </div>
       ))}

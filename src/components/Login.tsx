@@ -77,17 +77,20 @@ export const Login = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className="space-y-4 h-screen flex flex-col p-8 justify-center items-center w-full"
+        className="space-y-8 h-screen flex flex-col p-8  justify-center  items-center w-full"
       >
-        <Card className="max-w-sm flex flex-col w-full bg-background mx-auto px-2 border-border-color  md:p-4 md:border md:border-border-color rounded-md">
+        <Card className="max-w-sm text-light w-full mx-auto p-2 md:p-4 md:border md:border-border-color border-0 bg-background rounded-md ">
           <CardHeader className="text-center flex mb-0 flex-col items-center w-full text-xl md:text-2xl my-4 font-bold">
             <img src={chattLogo} alt="chatty-bee" className="size-12" />
-            <CardTitle className="text-heavy">Log In to Your Account</CardTitle>
-            <p className="text-sm text-light">
+            <CardTitle className="text-light">
+              {" "}
+              Log In to Your Account
+            </CardTitle>
+            <p className="text-sm text-light ">
               Access Your Messages Instantly with Chatty Bee
             </p>
           </CardHeader>
-          <CardContent className="px-0 gap-2 flex flex-col">
+          <CardContent className="px-0 gap-4 flex flex-col">
             <FormField
               control={form.control}
               name="email"
@@ -125,11 +128,11 @@ export const Login = () => {
             />
           </CardContent>
 
-          <CardFooter className="p-0 flex-col gap-4">
+          <CardFooter className="p-0 flex-col gap-2">
             <Button
               disabled={loadingLogin || loadingGoogle}
               type="submit"
-              className="w-full bg-background-heavy border border-border-color hover:bg-background-hover duration-200 cursor-pointer"
+              className="w-full text-light bg-background-heavy border border-border-color hover:bg-background-hover duration-200 cursor-pointer"
             >
               {loadingLogin ? <UserLoadingSpinner /> : "Login"}
             </Button>
@@ -148,7 +151,7 @@ export const Login = () => {
                 </div>
               )}
             </Button>
-            <p className="text-center text-light text-sm mt-2">
+            <p className="text-center text-light text-sm">
               Don't have an account?{" "}
               <Link
                 to="/register"

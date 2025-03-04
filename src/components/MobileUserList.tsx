@@ -7,7 +7,7 @@ export const MobileUserList = () => {
       <div>
         <UserHeader />
       </div>
-      <div className=" mt-3 rounded-tr-3xl p-4 border h-full rounded-tl-3xl overflow-auto scrollbar-hidden  border-border-color">
+      <div className=" mt-3  h-full  overflow-auto scrollbar-hidden  border-border-color">
         <UsersListContent />
       </div>
     </div>

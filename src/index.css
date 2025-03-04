@@ -9,6 +9,7 @@
   --background-hover: #1e1301;
   --heavy: #cecdcd;
   --light: #a2a0a0;
+  --border-color-light: #5333036a;
   --border-color: #533303;
   --button-active: #2c1707;
   --background: #120902;
@@ -51,6 +52,7 @@
   --background-hover: #1e1301;
   --heavy: #cecdcd;
   --light: #a2a0a0;
+  --border-color-light: #5333036a;
   --border-color: #533303;
   --background: #1b1202;
   --foreground: oklch(0.984 0.003 247.858);
@@ -93,6 +95,7 @@
   --color-heavy: var(--heavy);
   --color-light: var(--light);
   --color-border-color: var(--border-color);
+  --color-border-color-light: var(--border-color-light);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
