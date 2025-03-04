@@ -59,7 +59,7 @@ export const ChatsMessages = () => {
         ))}
         <div ref={messagesEndRef}></div>
       </div>
-      <div className="p-4 pb-8">
+      <div className="p-4">
         <TextInput focusRef={focusRef} />
       </div>
     </div>

@@ -21,7 +21,7 @@ export const EditProfileDialog = ({
         onInteractOutside={(e) => {
           e.preventDefault();
         }}
-        className="bg-background border border-border-color  max-w-sm w-sm"
+        className="bg-background border text-heavy border-border-color  max-w-sm w-sm"
       >
         <DialogHeader>
           <DialogTitle></DialogTitle>

@@ -21,7 +21,7 @@ export const ProfileDialog = ({
         onInteractOutside={(e) => {
           e.preventDefault();
         }}
-        className="bg-white"
+        className="bg-background text-heavy w-sm border-border-color border"
       >
         <DialogHeader>
           <DialogTitle></DialogTitle>

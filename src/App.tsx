@@ -5,7 +5,6 @@ import { Login } from "./components/Login";
 import { useAppDispatch, useAppSelector } from "./redux/store";
 import { useEffect } from "react";
 import { checkAuthState, getUserData, getUsers } from "./redux/slice/authSlice";
-import { ProfilePage } from "./pages/ProfilePage";
 import { RootLayout } from "./Layouts/RootLayout";
 import { ErrorPage } from "./pages/ErrorPage";
 import { ChatsPage } from "./pages/ChatsPage";
@@ -14,6 +13,7 @@ import { PublicLayout } from "./Layouts/PublicLayout";
 import { setOriginalUsers } from "./redux/slice/filterSlice";
 import { ChatMessage } from "./pages/ChatMessage";
 import { PrivateLayout } from "./Layouts/PrivateLayout";
+import { AboutPage } from "./pages/AboutPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -39,7 +39,7 @@ function App() {
             <Route index element={<ChatsPage />} />
             <Route path="chats" element={<ChatsPage />} />
             <Route path="/chats/:chatId" element={<ChatMessage />} />
-            <Route path="profile" element={<ProfilePage />} />
+            <Route path="about" element={<AboutPage />} />
             <Route path="/users" element={<UsersPage />} />
           </Route>
         </Route>

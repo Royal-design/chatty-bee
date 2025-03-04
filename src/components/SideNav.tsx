@@ -13,7 +13,7 @@ export const SideNav = () => {
         <NavLink to="/users">
           <HiUsers size={25} className="text-[#a2a0a0]" />
         </NavLink>
-        <NavLink to="/profile">
+        <NavLink to="/about">
           <BsInfoCircleFill size={25} className="text-[#a2a0a0]" />
         </NavLink>
       </div>
