@@ -41,7 +41,7 @@ export const ChatMessage = () => {
         async (res) => {
           const items = res.data()?.chats || [];
 
-          const promises = items.map(async (item) => {
+          const promises = items.map(async (item: any) => {
             const userDocRef = doc(db, "users", item.receiverId);
             const userDocSnap = await getDoc(userDocRef);
             const user = userDocSnap.data();
