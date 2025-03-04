@@ -43,11 +43,10 @@ export const Login = () => {
 
   const handleGoogleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    setLoadingGoogle(true); // Set loading state for Google login
-
+    setLoadingGoogle(true);
     const response = await dispatch(loginWithGoogle());
 
-    setLoadingGoogle(false); // Reset loading state
+    setLoadingGoogle(false);
 
     if (response.success) {
       toast.success("User logged in successfully");
@@ -58,11 +57,11 @@ export const Login = () => {
   };
 
   const handleSubmit = async (data: LoginFormData) => {
-    setLoadingLogin(true); // Set loading state for normal login
+    setLoadingLogin(true);
 
     const response = await dispatch(loginUser(data.email, data.password));
 
-    setLoadingLogin(false); // Reset loading state
+    setLoadingLogin(false);
 
     if (response.success) {
       toast.success("User logged in successfully");

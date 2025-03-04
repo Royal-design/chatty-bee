@@ -69,6 +69,7 @@ export const authSlice = createSlice({
         state.user.status = "offline";
       }
       state.user = null;
+      state.loading = false;
     }
   }
 });
@@ -246,7 +247,7 @@ export const checkAuthState = (): AppThunk => (dispatch) => {
         }
       });
 
-      return () => unsubscribe(); // Cleanup when user logs out
+      return () => unsubscribe();
     } else {
       dispatch(clearUser());
     }
