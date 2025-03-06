@@ -34,14 +34,19 @@ function App() {
     <Router>
       <Toaster position="top-center" />
       <Routes>
-        <Route element={<PrivateLayout />}>
-          <Route path="/" element={<RootLayout />}>
-            <Route index element={<ChatsPage />} />
-            <Route path="chats" element={<ChatsPage />} />
-            <Route path="/chats/:chatId" element={<ChatMessage />} />
-            <Route path="about" element={<AboutPage />} />
-            <Route path="/users" element={<UsersPage />} />
-          </Route>
+        <Route
+          path="/"
+          element={
+            <PrivateLayout>
+              <RootLayout />
+            </PrivateLayout>
+          }
+        >
+          <Route index element={<ChatsPage />} />
+          <Route path="chats" element={<ChatsPage />} />
+          <Route path="/chats/:chatId" element={<ChatMessage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="/users" element={<UsersPage />} />
         </Route>
 
         <Route element={<PublicLayout />}>

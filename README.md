@@ -2,6 +2,10 @@
 
 ChattyBee is a real-time chat application built with React and Firebase. It features user authentication, real-time messaging.
 
+### Web Link
+
+[click the link to access the site](https://chatty-bee.vercel.app/)
+
 ## Features
 
 - User authentication with email/password and Google login.

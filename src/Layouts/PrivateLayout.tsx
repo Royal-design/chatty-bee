@@ -1,11 +1,10 @@
 import { Loading } from "@/components/Loading";
+import { Login } from "@/components/Login";
 import { useAppSelector } from "@/redux/store";
-import { Navigate, Outlet } from "react-router-dom";
 
-export const PrivateLayout = () => {
-  const { user, loading } = useAppSelector((state) => state.auth);
-
+export const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
+  const { loading, user } = useAppSelector((state) => state.auth);
   if (loading) return <Loading />;
-  if (!user) <Navigate to="/login" replace />;
-  return user && <Outlet />;
+  if (!user) return <Login />;
+  return children;
 };
