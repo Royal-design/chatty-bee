@@ -6,7 +6,7 @@ export const PublicLayout = () => {
   const { user, loading } = useAppSelector((state) => state.auth);
 
   if (loading) return <Loading />;
-  if (user) return <Navigate to="/" replace />;
+  if (user) return <Navigate to="/" />;
 
   return <Outlet />;
 };

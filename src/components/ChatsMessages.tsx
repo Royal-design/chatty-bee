@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { doc, onSnapshot, Timestamp } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import { setActiveChatId } from "@/redux/slice/chatSlice";
+import iconBg from "@/assets/iconbg.jpg";
 
 interface ChatsProps {
   messages: {
@@ -53,7 +54,15 @@ export const ChatsMessages = () => {
       <div className="">
         <Navbar />
       </div>
-      <div className=" p-4 overflow-auto h-full gap-4 flex flex-col scrollbar-hidden">
+      <div
+        style={{
+          backgroundImage: `url(${iconBg})`,
+          backgroundBlendMode: "overlay",
+
+          backgroundRepeat: "repeat"
+        }}
+        className=" p-4 overflow-auto bg-[#0a0600] h-full gap-4 flex flex-col scrollbar-hidden"
+      >
         {chat?.messages.map((message) => (
           <Message key={message?.createdAt.toString()} message={message} />
         ))}

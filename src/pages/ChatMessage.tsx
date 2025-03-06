@@ -1,6 +1,7 @@
 import { ChatsBox } from "@/components/ChatsBox";
 import { ChatsList } from "@/components/ChatsList";
 import { ChatsMessages } from "@/components/ChatsMessages";
+import { WelcomeMessage } from "@/components/WelcomeMessage";
 import { db } from "@/firebase/firebase";
 import { setOriginalChats } from "@/redux/slice/filterSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
@@ -70,7 +71,7 @@ export const ChatMessage = () => {
 
   return (
     <div className="h-full flex flex-col">
-      {chatId && chats.length > 0 && (
+      {chatId && chats.length > 0 ? (
         <div className="h-full">
           <div className="md:flex hidden h-full">
             <div className="h-full">
@@ -85,6 +86,8 @@ export const ChatMessage = () => {
             <ChatsMessages />
           </div>
         </div>
+      ) : (
+        <WelcomeMessage />
       )}
     </div>
   );

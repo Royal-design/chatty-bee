@@ -6,6 +6,6 @@ export const PrivateLayout = () => {
   const { user, loading } = useAppSelector((state) => state.auth);
 
   if (loading) return <Loading />;
-
-  return user ? <Outlet /> : <Navigate to="/login" replace />;
+  if (!user) <Navigate to="/login" replace />;
+  return user && <Outlet />;
 };
