@@ -18,7 +18,7 @@ export const RootLayout = () => {
         <main className="w-full  h-full py-2">
           <Outlet />
         </main>
-        <div className="pl-4 ">{!isChatsChild && <SideNav />}</div>
+        <div className="pl-4 mb-[3.5rem]">{!isChatsChild && <SideNav />}</div>
       </div>
     </div>
   );
