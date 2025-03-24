@@ -1,16 +1,16 @@
-import chattyBee from "../assets/chatty.png";
+import BeepME from "../assets/BEEPME.png";
 
 export const AboutPage = () => {
   return (
     <section className="max-w-2xl mx-auto flex flex-col overflow-auto scrollbar-hidden p-6 rounded-lg shadow-lg">
       <figure className="flex justify-center mb-2">
-        <img src={chattyBee} alt="logo" className="size-11" />
+        <img src={BeepME} alt="logo" className="size-11" />
       </figure>
       <h1 className="text-xl md:text-2xl font-bold text-center text-heavy">
-        About ChattyBee 🐝
+        About BeepME
       </h1>
       <p className="text-light text-sm md:text-base md:text-center mt-2">
-        ChattyBee is a modern real-time chat application designed to provide a
+        BeepME is a modern real-time chat application designed to provide a
         seamless and engaging messaging experience. Built with React and
         Firebase, it enables users to send and receive messages instantly while
         maintaining a clean and user-friendly interface.
@@ -30,14 +30,12 @@ export const AboutPage = () => {
       </div>
 
       <div className="mt-6">
-        <h2 className="md:text-xl font-semibold text-heavy">
-          Why ChattyBee? 🐝
-        </h2>
+        <h2 className="md:text-xl font-semibold text-heavy">Why BeepME? 🐝</h2>
         <p className="text-light text-sm mt-2">
-          ChattyBee is built to offer a fast, lightweight, and reliable chat
+          BeepME is built to offer a fast, lightweight, and reliable chat
           experience. Whether you're chatting with friends or staying connected
-          with colleagues, ChattyBee ensures your messages are delivered
-          instantly without any delay.
+          with colleagues, BeepME ensures your messages are delivered instantly
+          without any delay.
         </p>
       </div>
     </section>

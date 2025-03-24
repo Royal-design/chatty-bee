@@ -23,7 +23,7 @@ import {
 import { useAppDispatch } from "@/redux/store";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "@/redux/slice/authSlice";
-import chattLogo from "../assets/chatty.png";
+import chattLogo from "../assets/BEEPME.png";
 
 import { toast } from "sonner";
 import { UserLoadingSpinner } from "./UserLoadingSpinner";
@@ -62,10 +62,14 @@ export const Register = () => {
       >
         <Card className="max-w-sm text-light w-full mx-auto p-2 md:p-4 md:border md:border-border-color border-0 bg-background rounded-md ">
           <CardHeader className="text-center flex flex-col items-center text-xl md:text2xl mb-4 fontbold">
-            <img src={chattLogo} alt="chatty-bee" className="size-12" />
+            <img
+              src={chattLogo}
+              alt="chatty-bee"
+              className="size-15 object-contain"
+            />
             <CardTitle className="text-light"> Create an Account</CardTitle>
             <p className="text-sm text-light  mt-2">
-              Sign Up & Start Connecting with Chatty Bee
+              Sign Up & Start Connecting with BeepME
             </p>
           </CardHeader>
           <CardContent className="p-0 flex flex-col gap-4">

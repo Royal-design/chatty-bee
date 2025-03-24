@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import logo from "../assets/chatty.png";
+import logo from "../assets/BEEPME.png";
 import { SearchDialog } from "./SearchDialog";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -20,7 +20,7 @@ export const WelcomeMessage = () => {
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
       >
-        <img src={logo} alt="logo" className="size-11" />
+        <img src={logo} alt="logo" className="size-15 object-contain" />
       </motion.div>
       <motion.h2
         initial={{ opacity: 0, y: 10 }}
@@ -28,7 +28,7 @@ export const WelcomeMessage = () => {
         transition={{ delay: 0.2, duration: 0.4 }}
         className="text-xl md:text-2xl font-semibold text-heavy"
       >
-        <p> Welcome to ChattyBee!</p>
+        <p> Welcome to BeepME!</p>
       </motion.h2>
       <motion.h2
         initial={{ opacity: 0, y: 10 }}
@@ -36,7 +36,7 @@ export const WelcomeMessage = () => {
         transition={{ delay: 0.2, duration: 0.4 }}
         className="text-sm md:text-xl font-semibold text-light"
       >
-        No Chats Yet? Let’s Get the Buzz Going! 🐝
+        No Chats Yet? Let’s Get the Buzz Going!
       </motion.h2>
 
       <motion.p

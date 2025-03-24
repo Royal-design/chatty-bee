@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import googleImage from "../assets/google.webp";
-import chattLogo from "../assets/chatty.png";
+import chattLogo from "../assets/BEEPME.png";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -80,13 +80,17 @@ export const Login = () => {
       >
         <Card className="max-w-sm text-light w-full mx-auto p-2 md:p-4 md:border md:border-border-color border-0 bg-background rounded-md ">
           <CardHeader className="text-center flex mb-0 flex-col items-center w-full text-xl md:text-2xl my-4 font-bold">
-            <img src={chattLogo} alt="chatty-bee" className="size-12" />
+            <img
+              src={chattLogo}
+              alt="chatty-bee"
+              className="size-15 object-contain"
+            />
             <CardTitle className="text-light">
               {" "}
               Log In to Your Account
             </CardTitle>
             <p className="text-sm text-light ">
-              Access Your Messages Instantly with Chatty Bee
+              Access Your Messages Instantly with BeepME
             </p>
           </CardHeader>
           <CardContent className="px-0 gap-4 flex flex-col">
