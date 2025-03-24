@@ -1,10 +1,10 @@
-# ChattyBee App
+# BeepME App
 
-ChattyBee is a real-time chat application built with React and Firebase. It features user authentication, real-time messaging.
+BeepME is a real-time chat application built with React and Firebase. It features user authentication, real-time messaging.
 
 ### Web Link
 
-[click the link to access the site](https://chatty-bee.vercel.app/)
+[click the link to access the site](https://beep-me.vercel.app/)
 
 ## Features
 
