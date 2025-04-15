@@ -1,3 +1,4 @@
+import { MobileNav } from "@/components/MobileNav";
 import { SideNav } from "@/components/SideNav";
 import { Outlet, useLocation } from "react-router-dom";
 
@@ -18,7 +19,7 @@ export const RootLayout = () => {
         <main className="w-full  h-full py-2">
           <Outlet />
         </main>
-        <div className="pl-4 mb-[3.5rem]">{!isChatsChild && <SideNav />}</div>
+        <div>{!isChatsChild && <MobileNav />}</div>
       </div>
     </div>
   );

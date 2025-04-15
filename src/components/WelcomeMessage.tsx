@@ -13,7 +13,7 @@ export const WelcomeMessage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-gradient-to-r from-[#0c0900]  to-[#141001] flex flex-col items-center justify-center h-full text-center p-6"
+      className="bg-gradient-to-r from-[#0c0900]   to-[#120902] flex flex-col items-center justify-center h-full text-center p-6"
     >
       <motion.div
         initial={{ scale: 0.8 }}

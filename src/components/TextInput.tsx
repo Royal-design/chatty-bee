@@ -155,7 +155,19 @@ export const TextInput = ({ focusRef }: InputProps) => {
                       field.ref(e);
                       if (e) focusRef.current = e;
                     }}
-                    className="w-full border-border-color text-light pl-[3rem] h-[3rem] min-h-[3rem] max-h-[40px]  overflow-auto scrollbar-hidden rounded-4xl resize-none"
+                    onChange={(e) => {
+                      const el = e.target;
+                      el.style.height = "2rem";
+                      el.style.height = `${Math.min(el.scrollHeight, 100)}px`;
+                      field.onChange(e);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        form.handleSubmit(onSubmit)();
+                      }
+                    }}
+                    className="w-full border-border-color text-light pr-[2.4rem] pl-[3.2rem] h-[3rem] min-h-[3rem] max-h-[5rem]  overflow-auto scrollbar-hidden rounded-4xl resize-none"
                   />
                 </FormControl>
               </FormItem>
