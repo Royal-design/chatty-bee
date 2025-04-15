@@ -61,14 +61,14 @@ export const ChatsMessages = () => {
 
           backgroundRepeat: "repeat"
         }}
-        className=" p-4 overflow-auto bg-[#0a0600] h-full gap-4 flex flex-col scrollbar-hidden"
+        className=" px-4 pt-25 pb-25 overflow-auto bg-[#0a0600] h-full gap-4 flex flex-col scrollbar-hidden"
       >
         {chat?.messages.map((message) => (
           <Message key={message?.createdAt.toString()} message={message} />
         ))}
         <div ref={messagesEndRef}></div>
       </div>
-      <div className="p-4">
+      <div className="p-4 fixed bottom-0 bg-background w-[calc(100%-531px)] max-md:w-full">
         <TextInput focusRef={focusRef} />
       </div>
     </div>

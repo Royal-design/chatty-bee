@@ -13,7 +13,7 @@ export const Navbar = () => {
   const isBlocked = chatUser?.id && currentUser?.blocked.includes(chatUser.id);
 
   return (
-    <div className="flex border-b border-border-color pb-2 px-2 justify-between items-center">
+    <div className="flex fixed bg-background w-[calc(100%-531px)] border-b border-border-color pb-2 px-2 justify-between items-center">
       <div className="flex items-center gap-4 ">
         <div
           className="text-heavy cursor-pointer"

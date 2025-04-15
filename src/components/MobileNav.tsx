@@ -2,11 +2,10 @@ import { HiUsers } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-import { cn } from "@/lib/utils";
 
 export const MobileNav = () => {
   return (
-    <div className="rounded-t-3xl px-6 pt-3 pb-2 fixed bottom-0 w-full bg-[#23180e] ">
+    <div className="rounded-t-3xl px-6 pt-3 pb-2 fixed bottom-0 w-full bg-[#191007] ">
       <div className="flex justify-between ">
         <NavLink
           to="/chats"
