@@ -83,7 +83,7 @@ export const Register = () => {
                     <Input
                       placeholder="Enter your name"
                       {...field}
-                      className="text-light border border-border-color"
+                      className="text-light h-12 border border-border-color"
                     />
                   </FormControl>
                   <FormMessage />
@@ -100,7 +100,7 @@ export const Register = () => {
                     <Input
                       placeholder="Enter your email"
                       {...field}
-                      className="text-light border border-border-color"
+                      className="text-light h-12 border border-border-color"
                     />
                   </FormControl>
                   <FormMessage />
@@ -117,7 +117,7 @@ export const Register = () => {
                     <Input
                       type="password"
                       placeholder="Enter your password"
-                      className="text-light border border-border-color"
+                      className="text-light h-12 border border-border-color"
                       {...field}
                     />
                   </FormControl>
@@ -132,7 +132,7 @@ export const Register = () => {
             <Button
               disabled={form.formState.isSubmitting}
               type="submit"
-              className="w-full text-light bg-background-heavy border-border-color border hover:bg-background-hover"
+              className="w-full text-light h-12 bg-background-heavy border-border-color border hover:bg-background-hover"
             >
               {form.formState.isSubmitting ? (
                 <UserLoadingSpinner />

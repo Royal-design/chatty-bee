@@ -104,7 +104,7 @@ export const Login = () => {
                     <Input
                       placeholder="Enter your email"
                       {...field}
-                      className="border text-light border-border-color"
+                      className="border h-12 text-light border-border-color"
                     />
                   </FormControl>
                   <FormMessage />
@@ -120,7 +120,7 @@ export const Login = () => {
                   <FormControl>
                     <Input
                       type="password"
-                      className="border text-light border-border-color"
+                      className="border h-12 text-light border-border-color"
                       placeholder="Enter your password"
                       {...field}
                     />
@@ -135,7 +135,7 @@ export const Login = () => {
             <Button
               disabled={loadingLogin || loadingGoogle}
               type="submit"
-              className="w-full text-light bg-background-heavy border border-border-color hover:bg-background-hover duration-200 cursor-pointer"
+              className="w-full h-12 text-light bg-background-heavy border border-border-color hover:bg-background-hover duration-200 cursor-pointer"
             >
               {loadingLogin ? <UserLoadingSpinner /> : "Login"}
             </Button>
@@ -143,7 +143,7 @@ export const Login = () => {
               disabled={loadingLogin || loadingGoogle}
               onClick={handleGoogleLogin}
               variant="ghost"
-              className="w-full cursor-pointer hover:bg-background-heavy duration-200 border border-border-color"
+              className="w-full h-12 cursor-pointer hover:bg-background-heavy duration-200 border border-border-color"
             >
               {loadingGoogle ? (
                 <UserLoadingSpinner />

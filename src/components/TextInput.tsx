@@ -167,7 +167,7 @@ export const TextInput = ({ focusRef }: InputProps) => {
                         form.handleSubmit(onSubmit)();
                       }
                     }}
-                    className="w-full border-border-color text-light pr-[2.4rem] pl-[3.2rem] h-[3rem] min-h-[3rem] max-h-[5rem]  overflow-auto scrollbar-hidden rounded-4xl resize-none"
+                    className="w-full border-border-color text-light pr-[2.4rem] pl-[3.2rem] h-[3rem] min-h-[3rem]   overflow-auto scrollbar-hidden rounded-4xl resize-none"
                   />
                 </FormControl>
               </FormItem>

@@ -17,6 +17,7 @@ export const store = configureStore({
           "auth/setUser",
           "auth/setUsers",
           "filter/setFilteredChats",
+          "filter.chats",
           "filter/setOriginalChats",
           "chat/changeChats"
         ],
@@ -25,7 +26,10 @@ export const store = configureStore({
           "auth.users.updatedAt",
           "filter.chats.user.updatedAt",
           "filter.originalChats.0.user.updatedAt",
-          "chats.chats.user.updatedAt"
+          "chats.chats.user.updatedAt",
+          "meta.arg",
+          "payload.timestamp",
+          "payload.user.updatedAt"
         ]
       }
     })

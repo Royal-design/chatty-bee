@@ -7,7 +7,7 @@ export interface Chat {
   lastMessage: string;
   receiverId: string;
   user: UserType;
-  updatedAt: number;
+  updatedAt: number | any;
 }
 
 interface FilterState {
