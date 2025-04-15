@@ -38,7 +38,7 @@ export const Navbar = () => {
       <div className="flex gap-4 items-center">
         <FaPhoneAlt size={20} className="text-light" />
         <IoIosVideocam size={20} className="text-light" />
-        <div className="" onClick={() => navigate("/profile")}>
+        <div className="" onClick={() => navigate("/about")}>
           <IoInformationCircle size={20} className="text-light" />
         </div>
       </div>

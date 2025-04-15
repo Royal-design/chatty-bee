@@ -2,9 +2,9 @@ import BeepME from "../assets/BEEPME.png";
 
 export const AboutPage = () => {
   return (
-    <section className="max-w-2xl mx-auto flex flex-col overflow-auto scrollbar-hidden p-6 rounded-lg shadow-lg">
+    <section className="max-w-2xl mx-auto flex flex-col h-full overflow-auto scrollbar-hidden px-4 max-md:pb-20  rounded-lg shadow-lg">
       <figure className="flex justify-center mb-2">
-        <img src={BeepME} alt="logo" className="size-11" />
+        <img src={BeepME} alt="logo" className="size-[7rem] object-contain" />
       </figure>
       <h1 className="text-xl md:text-2xl font-bold text-center text-heavy">
         About BeepME
